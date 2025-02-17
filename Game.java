@@ -19,18 +19,16 @@ public class Game {
         this.frame.setSize(600, 600);
         this.boardPanel = new JPanel();
         this.buttons = new JButton[3][4];
-
-        // Set layout of the gameboard
         boardPanel.setLayout(new GridLayout(3, 4));
 
-        // Initialize and add buttons for each tile
+        
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 4; j++) {
                 buttons[i][j] = new JButton("_____");
                 final int row = i;
                 final int col = j;
 
-                // Add action listener to each button
+                
                 buttons[i][j].addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
@@ -45,11 +43,11 @@ public class Game {
         frame.setVisible(true);
     }
 
-    // Handle tile click events
+    
     private void handleTileClick(int row, int col) {
-        if (isGameOver) return;  // Don't allow interaction if the game is over
+        if (isGameOver) return; 
         if (board.getGameboard()[row][col].isShowingValue() || board.getGameboard()[row][col].matched()) {
-            return;  // Ignore clicks on already matched or shown tiles
+            return; 
         }
 
         if (row1 == -1 && col1 == -1) {
@@ -63,11 +61,11 @@ public class Game {
             board.showValue(row, col);
             updateBoard();
 
-            // Check for match after the second tile is selected
+           
             String result = board.checkForMatch(row1, col1, row2, col2);
             JOptionPane.showMessageDialog(frame, result);
 
-            // Delay for a moment before updating the board
+            
             new Timer(2000, new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -75,14 +73,14 @@ public class Game {
                         JOptionPane.showMessageDialog(frame, "Game Over! All tiles matched.");
                         isGameOver = true;
                     }
-                    row1 = col1 = row2 = col2 = -1;  // Reset tile selections
-                    updateBoard();  // Update the board after checking match
+                    row1 = col1 = row2 = col2 = -1;  
+                    updateBoard();  
                 }
             }).start();
         }
     }
 
-    // Update the board UI
+ 
     private void updateBoard() {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 4; j++) {
