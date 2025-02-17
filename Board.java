@@ -54,7 +54,7 @@ public class Board
     for (int i = 0; i < 3; i++) {
       for (int j = 0; j < 4; j++) {
         if (gameboard[i][j] == null) {
-          return "Gameboard isn't filled with tiles yet.";
+          return "Gameboard isn't full";
         }
       }
     }
@@ -131,15 +131,15 @@ public class Board
       if (gameboard[row1][col1].getValue().equals(gameboard[row2][col2].getValue())) {
         gameboard[row1][col1].foundMatch();
         gameboard[row2][col2].foundMatch();
-        return "It is a match!";
+        return "It's a match";
       }
       gameboard[row1][col1].hide();
       gameboard[row2][col2].hide();
-      return "Not a match!";
+      return "It's not a match";
     }
     gameboard[row1][col1].hide();
     gameboard[row2][col2].hide();
-    return "Not a match!";
+    return "It's not a match";
   }
 
     /**
