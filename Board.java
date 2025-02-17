@@ -54,18 +54,20 @@ public class Board
     for (int i = 0; i < 3; i++) {
       for (int j = 0; j < 4; j++) {
         if (gameboard[i][j] == null) {
-          return "Gameboard isn't full";
+          return "Gameboard not full";
         }
       }
     }
     String board = "";
     for (int i = 0; i < 3; i++) {
       for (int j = 0; j < 4; j++) {
-        if (gameboard[i][j].isShowingValue() == true) {
+        if (gameboard[i][j].isShowingValue()) {
   
         board += gameboard[i][j].getValue() + " "; 
         }
-        else {board += gameboard[i][j].getHidden() + " ";}
+        else {
+            board += gameboard[i][j].getHidden() + " ";
+        }
       }
       board += "\n";
     }
@@ -83,7 +85,7 @@ public class Board
   {
     for (int i = 0; i < 3; i++) {
       for (int j = 0; j < 4; j++) {
-        if (gameboard[i][j].matched() == false) {
+        if (!gameboard[i][j].matched()) {
           return false;
         }
       }
@@ -131,15 +133,15 @@ public class Board
       if (gameboard[row1][col1].getValue().equals(gameboard[row2][col2].getValue())) {
         gameboard[row1][col1].foundMatch();
         gameboard[row2][col2].foundMatch();
-        return "It's a match";
+        return "Match";
       }
       gameboard[row1][col1].hide();
       gameboard[row2][col2].hide();
-      return "It's not a match";
+      return "Not a match";
     }
     gameboard[row1][col1].hide();
     gameboard[row2][col2].hide();
-    return "It's not a match";
+    return "Not a match";
   }
 
     /**
